@@ -9,6 +9,7 @@ async function getTestData() {
 export default async function Home() {
 
   const data = await getTestData()
+  console.log(data);
   
 
   return (
