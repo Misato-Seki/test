@@ -1,6 +1,5 @@
 import directus from '@/lib/directus';
 import { readItems } from '@directus/sdk';
-import { useState } from 'react';
 
 async function getTestData() {
     return directus.request(readItems('test'));
@@ -17,14 +16,14 @@ export default async function Home() {
 
   try {
     const rawData = await getTestData();
-    // 取得したデータをTestItem型に変換
+    // Convert retrieved data to TestItem type
     data = rawData.map(item => ({
       id: item.id,
       name: item.name
     }));
   } catch (error) {
     console.error("Failed to fetch data:", error);
-    errorMessage = "データの取得に失敗しました。時間をおいて再度お試しください。";
+    errorMessage = "Failed to fetch data from Directus.";
   }
 
   return (
@@ -43,7 +42,7 @@ export default async function Home() {
               </div>
             ))
           ) : (
-            <p>データがありません。</p>
+            <p>No data.</p>
           )
         )}
         
